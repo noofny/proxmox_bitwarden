@@ -35,10 +35,7 @@ bash -c "$(wget --no-cache -qLO - https://raw.githubusercontent.com/noofny/proxm
 ...enter your key...
 
 - (!) Do you have a SSL certificate to use? (y/n):
-`y`
-
-- (!) Is this a trusted SSL certificate (requires ca.crt, see docs)? (y/n):
-`y`
+`n`
 
 When `/bwdata/env/global.override.env` is opened for editing, enter SMTP details for email.
 

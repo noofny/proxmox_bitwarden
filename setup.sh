@@ -46,8 +46,6 @@ read -p "Enter an IPv4 Gateway (${DEFAULT_IPV4_GW}) : " HOST_IP4_GATEWAY
 read -p "Enter the network interface to use (${DEFAULT_NET_INTERFACE}) : " NET_INTERFACE
 read -p "Enter the network bridge to use (${DEFAULT_NET_BRIDGE}) : " NET_BRIDGE
 read -p "Enter a container ID (${DEFAULT_CONTAINER_ID}) : " CONTAINER_ID
-read -p "Enter your email address : " EMAIL_ADDRESS
-read -p "Enter your domain name : " DOMAIN_NAME
 HOSTNAME="${HOSTNAME:-${DEFAULT_HOSTNAME}}"
 HOSTPASS="${HOSTPASS:-${DEFAULT_PASSWORD}}"
 HOST_IP4_CIDR="${HOST_IP4_CIDR:-${DEFAULT_IPV4_CIDR}}"
@@ -56,8 +54,6 @@ NET_INTERFACE="${NET_INTERFACE:-${DEFAULT_NET_INTERFACE}}"
 NET_BRIDGE="${NET_BRIDGE:-${DEFAULT_NET_BRIDGE}}"
 CONTAINER_ID="${CONTAINER_ID:-${DEFAULT_CONTAINER_ID}}"
 export HOST_IP4_CIDR=${HOST_IP4_CIDR}
-export EMAIL_ADDRESS=${EMAIL_ADDRESS}
-export DOMAIN_NAME=${DOMAIN_NAME}
 # NOTE: Use 'pveam' tool to list available & download LXC images.
 #       Path for 'remote' storage will be '/mnt/proxmox/template/cache/'
 # TODO: make this dynamic so the user can choose!
