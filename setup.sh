@@ -2,6 +2,10 @@
 
 
 # functions
+function fatal() {
+    echo -e "\e[91m[FATAL] $1\e[39m"
+    exit 1
+}
 function error() {
     echo -e "\e[91m[ERROR] $1\e[39m"
 }
@@ -99,12 +103,12 @@ pct create "${CONTAINER_ID}" "${TEMPLATE_LOCATION}" \
     -net0 name=${NET_INTERFACE},bridge=${NET_BRIDGE},gw=${HOST_IP4_GATEWAY},ip=${HOST_IP4_CIDR} \
     -ostype "${CONTAINER_OS_TYPE}" \
     -password ${HOSTPASS} \
-    -storage "${STORAGE}"
+    -storage "${STORAGE}" || fatal "Failed to create LXC container!"
 
 
 # Configure container
 info "Configuring LXC container..."
-pct resize "${CONTAINER_ID}" rootfs 50G
+pct resize "${CONTAINER_ID}" rootfs 50G || fatal "Failed to expand root volume!"
 
 
 # Start container
@@ -112,9 +116,8 @@ info "Starting LXC container..."
 pct start "${CONTAINER_ID}"
 sleep 5
 CONTAINER_STATUS=$(pct status $CONTAINER_ID)
-if [ ${CONTAINER_STATUS} != "status: running" ]; then
-    error "Container ${CONTAINER_ID} is not running! status=${CONTAINER_STATUS}"
-    exit 1
+if [ "${CONTAINER_STATUS}" != "status: running" ]; then
+    fatal "Container ${CONTAINER_ID} is not running! status=${CONTAINER_STATUS}"
 fi
 
 
